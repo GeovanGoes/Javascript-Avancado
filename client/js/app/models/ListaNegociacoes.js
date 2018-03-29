@@ -14,8 +14,6 @@ class ListaNegociacoes
 
     get negociacoes()
     {
-        let copia = this._negociacoes;
-        return copia;
-
+        return [].concat(this._negociacoes);
     }
 }
