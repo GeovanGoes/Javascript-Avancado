@@ -1,12 +1,9 @@
-class NegociacoesView
+class NegociacoesView extends View
 {
 
-    constructor(elemento)
-    {
-        this._elemento = elemento;
-    }
+    constructor(elemento){super(elemento);}
 
-    _template(listaNegociacoes)
+    template(listaNegociacoes)
     {
         return `
             <table class="table table-hover table-bordered">
@@ -39,10 +36,5 @@ class NegociacoesView
                 </tfoot>
             </table>
         `;
-    }
-
-    update(listaNegociacoes)
-    {
-        this._elemento.innerHTML = this._template(listaNegociacoes);
     }
 }

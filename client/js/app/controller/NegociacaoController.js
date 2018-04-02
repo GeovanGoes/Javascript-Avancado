@@ -8,13 +8,11 @@ class NegociacaoController
         this._inputData = $('#data');
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
-        this._listaNegociacoes = new ListaNegociacoes();
-        this._negociacoesView = new NegociacoesView($('#negociacoes-view'));
+
+        /**Arrow function tem escopo léxico, o this fica amarrado a seu objeto de origem */
         
-        this._negociacoesView.update(this._listaNegociacoes);
-        this._mensagem = new Mensagem();
-        this._mensagemView = new MensagemView($('#mensagem-view'));
-        this._mensagemView.update(this._mensagem);
+        this._listaNegociacoes = new Bind(new ListaNegociacoes(), new NegociacoesView($('#negociacoes-view')), 'adiciona', 'esvazia');
+        this._mensagem = new Bind(new Mensagem(), new MensagemView($('#mensagem-view')), 'texto');
     }
 
     adiciona(event)
@@ -22,14 +20,17 @@ class NegociacaoController
         event.preventDefault();
         this._listaNegociacoes.adiciona(this._criaNegociacao());
         this._mensagem.texto = "Negociação adicionada com sucesso!";
-        this._negociacoesView.update(this._listaNegociacoes);
         this._limpaFormulario();
-        this._mensagemView.update(this._mensagem);
+    }
+
+    apaga()
+    {
+        this._listaNegociacoes.esvazia();
+        this._mensagem.texto = "Negociações apagadas com sucesso.";
     }
 
     _criaNegociacao()
     {
-        console.log(this._inputData.value);
         return new Negociacao(
             DateHelper.textoParaData(this._inputData.value),
             this._inputQuantidade.value,

@@ -35,27 +35,76 @@
         <button class="btn btn-primary text-center" type="button">
             Importar Negociações
         </button>
-        <button class="btn btn-primary text-center" type="button">
+        <button class="btn btn-primary text-center" type="button" onclick="negociacaoController.apaga()">
             Apagar
         </button>
     </div> 
     <br>
     <br>
-    <div id="negociacoes-view">
-
-    <div>
-    
+    <div id="negociacoes-view"><div>
     
     <script src="js/app/models/Negociacao.js"></script>
     <script src="js/app/models/ListaNegociacoes.js"></script>
     <script src="js/app/models/Mensagem.js"></script>
+    <script src="js/app/services/ProxyFactory.js"></script>
+    <script src="js/app/views/View.js"></script>
     <script src="js/app/views/NegociacoesView.js"></script>
     <script src="js/app/views/MensagemView.js"></script>
     <script src="js/app/controller/NegociacaoController.js"></script>
     <script src="js/app/helpers/DateHelper.js"></script>
+    <script src="js/app/helpers/Bind.js"></script>
 
     <script>
         let negociacaoController = new NegociacaoController();
+    </script>
+
+    <script>
+
+        /**
+        * Implementação nativa da API javascript do design pattern Proxy. 
+
+        let negociacao = new Proxy(new Negociacao(new Date(), 1, 100), 
+        {
+            //Interceptando leituras
+            get: function(target, prop, receiver) 
+            {
+                console.log(`a propriedade "${prop}" foi interceptada`);
+                return Reflect.get(target, prop, receiver);
+            }
+                        
+            //Interceptando atribuição de valor a propriedades
+            set: function(target, prop, value, receiver)
+            {
+                console.log(`Valor anterior ${target[prop]}, novo valor "${value}"`);
+                return Reflect.get(target, prop, value, receiver);
+            }
+        });
+        negociacao.quantidade = 10;
+        negociacao.valor = 200;
+        */
+
+        /**Usando Proxy para métodos
+        let listaNegociacoes = new Proxy(new ListaNegociacoes(), 
+        {  
+            get(target, prop, receiver) 
+            {
+                if (['adiciona', 'esvazia'].includes(prop) && typeof(target[prop]) == typeof(Function))
+                {
+                    return function ()
+                    {
+                        console.log(`interceptando ${prop}`);
+                        console.log(arguments);
+                        Reflect.apply(target[prop], target, arguments);
+                    }
+                }
+                return Reflect.get(target, prop, receiver);
+            }
+        });
+
+        listaNegociacoes.adiciona(new Negociacao(new Date(), 1, 100));
+        */
+
+
     </script>
 </body>
 </html>
