@@ -1,46 +1,37 @@
 class NegociacaoService
 {
-    obterNegociacoesDaSemana(callback)
+
+    constructor()
     {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'negociacoes/semana');
-        xhr.onreadystatechange = () =>
-        {
-            if (xhr.readyState == 4)
-            {
-                if (xhr.status == 200)
-                {
-                    callback(null,JSON.parse(xhr.responseText).map((objeto) => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
-                }
-                else 
-                {
-                    console.error(xhr.responseText);
-                    callback("Nã foi possível obter as negociações",null);
-                }
-            }
-        }
-        xhr.send();
+        this._http = new HttpService();
+    }
+
+    obterNegociacoesDaSemana()
+    {
+        return this._obterNegociacoes('negociacoes/semana',"Não foi possível obter as negociações da semana.");
     }
 
     obterNegociacoesDaSemanaRetrasada(callback)
     {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'negociacoes/retrasada');
-        xhr.onreadystatechange = () =>
+        return this._obterNegociacoes('negociacoes/retrasada',"Não foi possível obter as negociações da semana retrasada.");
+    }
+
+    obterNegociacoesDaSemanaAnterior(callback)
+    {
+        return this._obterNegociacoes('negociacoes/anterior',"Não foi possível obter as negociações da semana anterior.");
+    }
+
+    _obterNegociacoes(url, mensagemErro)
+    {
+        return new Promise((resolve, reject) => 
         {
-            if (xhr.readyState == 4)
-            {
-                if (xhr.status == 200)
-                {
-                    callback(null,JSON.parse(xhr.responseText).map((objeto) => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
-                }
-                else 
-                {
-                    console.error(xhr.responseText);
-                    callback("Nã foi possível obter as negociações",null);
-                }
-            }
-        }
-        xhr.send();
+            this._http
+                .get(url)
+                .then(negociacoes => resolve(negociacoes.map((objeto) => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor))))
+                .catch(erro => {
+                    console.error(erro);
+                    reject(mensagemErro);
+                });     
+        });
     }
 }

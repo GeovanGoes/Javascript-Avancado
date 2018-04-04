@@ -11,8 +11,10 @@ class NegociacaoController
 
         /**Arrow function tem escopo léxico, o this fica amarrado a seu objeto de origem */
         
-        this._listaNegociacoes = new Bind(new ListaNegociacoes(), new NegociacoesView($('#negociacoes-view')), 'adiciona', 'esvazia');
+        this._listaNegociacoes = new Bind(new ListaNegociacoes(), new NegociacoesView($('#negociacoes-view')), 'adiciona', 'esvazia', 'sort', 'reverse');
         this._mensagem = new Bind(new Mensagem(), new MensagemView($('#mensagem-view')), 'texto');
+
+        this._ordemAtual = '';
     }
 
     adiciona(event)
@@ -49,16 +51,33 @@ class NegociacaoController
     importarNegociacoes()
     {
         let service = new NegociacaoService();
-        service.obterNegociacoesDaSemana((err, negociacoes) => {
-            if (err)
-            {
-                this._mensagem.texto = err;
-                return;
-            }
 
-            negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
-            this._mensagem.texto = "Negociacoes importadas com sucesso.";
-        });
+
+        Promise.all([service.obterNegociacoesDaSemana(), 
+                    service.obterNegociacoesDaSemanaAnterior(), 
+                    service.obterNegociacoesDaSemanaRetrasada()]
+                    )
+                    .then(negociacoes => 
+                    {
+                        negociacoes
+                        .reduce((arrayAchatado,array) => arrayAchatado.concat(array), [])
+                        .forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
+                        this._mensagem.texto = "Negociacoes importadas com sucesso.";
+                    })
+                    .catch(erro => this._mensagem.texto = erro);
+    }
+
+    ordena(criterio)
+    {
+        if(criterio == this._ordemAtual)
+        {
+            this._listaNegociacoes.reverse();
+        }
+        else
+        {
+            this._listaNegociacoes.sort((itemOne, itemTwo) => itemOne[criterio] - itemTwo[criterio]);
+        }
+        this._ordemAtual = criterio;
     }
 
 }
