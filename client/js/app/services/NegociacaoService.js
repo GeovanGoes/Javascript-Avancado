@@ -11,12 +11,12 @@ class NegociacaoService
         return this._obterNegociacoes('negociacoes/semana',"Não foi possível obter as negociações da semana.");
     }
 
-    obterNegociacoesDaSemanaRetrasada(callback)
+    obterNegociacoesDaSemanaRetrasada()
     {
         return this._obterNegociacoes('negociacoes/retrasada',"Não foi possível obter as negociações da semana retrasada.");
     }
 
-    obterNegociacoesDaSemanaAnterior(callback)
+    obterNegociacoesDaSemanaAnterior()
     {
         return this._obterNegociacoes('negociacoes/anterior',"Não foi possível obter as negociações da semana anterior.");
     }
