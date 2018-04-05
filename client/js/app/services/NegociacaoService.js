@@ -6,6 +6,20 @@ class NegociacaoService
         this._http = new HttpService();
     }
 
+    obterNegociacoes()
+    {
+        return Promise.all([this.obterNegociacoesDaSemana(), 
+                    this.obterNegociacoesDaSemanaAnterior(), 
+                    this.obterNegociacoesDaSemanaRetrasada()])
+                    .then(periodos => 
+                    {
+                        let negociacoes = periodos
+                        .reduce((dados, periodo) => dados.concat(periodo), [])
+                        .map(dado => new Negociacao(new Date(dado.data), dado.quantidade, dado.valor ));
+                        return negociacoes;
+                    }).catch(erro => {throw new Error(erro)});
+    }
+
     obterNegociacoesDaSemana()
     {
         return this._obterNegociacoes('negociacoes/semana',"Não foi possível obter as negociações da semana.");
@@ -34,4 +48,53 @@ class NegociacaoService
                 });     
         });
     }
+
+    cadastra(negociacao)
+    {
+        return ConnectionFactory
+            .getConnection()
+            .then(connection => new NegociacaoDao(connection))
+            .then(dao => dao.adiciona(negociacao))
+            .then(() => 'Negociacao adicionada com sucesso.')
+            .catch(erro => {throw new Error(erro)})
+    }
+
+    listaTodos()
+    {
+        return ConnectionFactory
+            .getConnection()
+            .then(connection => new NegociacaoDao(connection))
+            .then(dao => dao.listaTodos())
+            .catch(erro => 
+            {
+                throw new Error(erro);    
+            });
+    }
+
+    apagaTodos()
+    {
+        return ConnectionFactory
+            .getConnection()
+            .then(connection => new NegociacaoDao(connection))
+            .then(dao => dao.apagaTodos())
+            .catch(erro =>
+            {
+                throw new Error(erro);
+            })
+    }
+
+    importa(listaAtual)
+    {
+        return this.obterNegociacoes()
+        .then(negociacoes => 
+            negociacoes.filter(negociacao => 
+                !listaAtual.some(negociacaoExistente => 
+                    JSON.stringify(negociacao) == JSON.stringify(negociacaoExistente))))
+        .catch(erro => 
+        {
+            console.error(erro);
+            throw new Error(erro)
+        });
+    }
+
 }
