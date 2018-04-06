@@ -1,0 +1,3 @@
+	- npm start - Inicia o server
+	- npm build - builda o projeto
+	- npm watch - facilita o dev
