@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FotoComponent } from '../foto/foto.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FotoService } from '../foto/foto.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -13,10 +14,27 @@ export class CadastroComponent
     foto: FotoComponent = new FotoComponent();
     meuForm: FormGroup;
     service: FotoService;
+    route: ActivatedRoute;
 
-    constructor(formBuilder: FormBuilder, service: FotoService)
+    constructor(formBuilder: FormBuilder, service: FotoService, route: ActivatedRoute)
     {
+
         this.service = service;
+        this.route = route;
+
+        this.route.params.subscribe(params => {
+            let id = params['id'];
+            if (id)
+            {
+                this.service.buscaPorId(id)
+                .subscribe(
+                    foto => this.foto = foto, 
+                    error => console.log(error)
+                );
+            }
+        });
+
+        
         this.meuForm = formBuilder.group({
             titulo: [ '', Validators.compose([ Validators.required, Validators.minLength(4) ]) ],
             url: [ '', Validators.required ],
