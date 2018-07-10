@@ -1,9 +1,9 @@
 import { Http, Headers, Response } from "@angular/http";
 import { FotoComponent } from "./foto.component";
 import { Observable } from "rxjs/Observable";
+import { Injectable } from "@angular/core";
 
-
-
+@Injectable()
 export class FotoService
 {
     http : Http;
@@ -15,7 +15,6 @@ export class FotoService
         this.http = http;
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
-
     }
 
     cadastra(foto: FotoComponent): Observable<Response>
