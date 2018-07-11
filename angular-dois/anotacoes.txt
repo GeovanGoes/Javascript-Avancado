@@ -1,0 +1,1 @@
+ () data binding que vai da view para o modelo, [] data binding que vem do modelo para view.
