@@ -40,6 +40,7 @@ export class ModalComponent implements AfterViewInit
 
     show()
     {
-        $(this._element).dialog('open');
+        console.log("Cheguei aqui...");
+        $(this._element.nativeElement).dialog('open');
     }
 }
