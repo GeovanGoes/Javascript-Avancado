@@ -6,5 +6,6 @@ export interface Agendamento
     modeloCarro: string;
     precoTotal: number;
     data: string;
-
+    confirmado: boolean;
+    enviado: boolean;
 }

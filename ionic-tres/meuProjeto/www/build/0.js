@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 279:
+/***/ 299:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EscolhaPageModule", function() { return EscolhaPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListaAgendamentosPageModule", function() { return ListaAgendamentosPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__escolha__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lista_agendamentos__ = __webpack_require__(206);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,24 +18,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var EscolhaPageModule = /** @class */ (function () {
-    function EscolhaPageModule() {
+var ListaAgendamentosPageModule = /** @class */ (function () {
+    function ListaAgendamentosPageModule() {
     }
-    EscolhaPageModule = __decorate([
+    ListaAgendamentosPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__escolha__["a" /* EscolhaPage */],
+                __WEBPACK_IMPORTED_MODULE_2__lista_agendamentos__["a" /* ListaAgendamentosPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__escolha__["a" /* EscolhaPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__lista_agendamentos__["a" /* ListaAgendamentosPage */]),
             ],
-            exports: [__WEBPACK_IMPORTED_MODULE_2__escolha__["a" /* EscolhaPage */]]
+            exports: [__WEBPACK_IMPORTED_MODULE_2__lista_agendamentos__["a" /* ListaAgendamentosPage */]]
         })
-    ], EscolhaPageModule);
-    return EscolhaPageModule;
+    ], ListaAgendamentosPageModule);
+    return ListaAgendamentosPageModule;
 }());
 
-//# sourceMappingURL=escolha.module.js.map
+//# sourceMappingURL=lista-agendamentos.module.js.map
 
 /***/ })
 

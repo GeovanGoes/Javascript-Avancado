@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Agendamento } from '../../modelos/agendamento';
+import { Observable } from '../../../node_modules/rxjs/Observable';
 
 /*
   Generated class for the AgendamentosServiceProvider provider.
@@ -20,6 +21,11 @@ export class AgendamentosServiceProvider
 
   agenda(agendamento: Agendamento)
   {
-    return this.http.post(this.url + '/agendamento/agenda', agendamento);
+    return this.http
+      .post(this.url + '/agendamento/agenda', agendamento)
+      .do(() => {
+        agendamento.enviado = true;
+      })
+      .catch(error => Observable.of(new Error('Falha no agendamento, tente novamente mais tarde')));
   }
 }

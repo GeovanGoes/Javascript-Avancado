@@ -1,0 +1,35 @@
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+*~
+*.sw[mnpcod]
+*.log
+*.tmp
+*.tmp.*
+log.txt
+*.sublime-project
+*.sublime-workspace
+.vscode/
+npm-debug.log*
+
+ionic-tres/meuProjeto/.idea
+ionic-tres/meuProjeto/.sourcemaps
+ionic-tres/meuProjeto/.sass-cache
+ionic-tres/meuProjeto/.tmp
+ionic-tres/meuProjeto/.versions
+ionic-tres/meuProjeto/coverage
+ionic-tres/meuProjeto/dist
+ionic-tres/meuProjeto/node_modules
+ionic-tres/meuProjeto/tmp
+ionic-tres/meuProjeto/temp
+ionic-tres/meuProjeto/hooks
+ionic-tres/meuProjeto/platforms
+ionic-tres/meuProjeto/plugins
+ionic-tres/meuProjeto/plugins/android.json
+ionic-tres/meuProjeto/plugins/ios.json
+ionic-tres/meuProjeto/www
+ionic-tres/meuProjeto/$RECYCLE.BIN
+
+ionic-tres/meuProjeto/.DS_Store
+ionic-tres/meuProjeto/Thumbs.db
+ionic-tres/meuProjeto/UserInterfaceState.xcuserstate
