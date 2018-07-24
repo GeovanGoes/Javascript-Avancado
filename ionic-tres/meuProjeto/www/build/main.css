@@ -25678,6 +25678,30 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+myapp #cabecalho-menu .item-inner {
+  border: none;
+}
+
+myapp .cabecalho-menu {
+  background-image: url("../assets/img/material-design-background.jpg");
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+myapp .cabecalho-menu ion-avatar img {
+  width: 50px;
+  height: 50px;
+}
+
+myapp .cabecalho-menu h2 {
+  color: white;
+  font-weight: bold;
+}
+
+myapp .cabecalho-menu p {
+  color: #eee;
+}
+
 page-escolha ion-slides {
   height: auto;
 }

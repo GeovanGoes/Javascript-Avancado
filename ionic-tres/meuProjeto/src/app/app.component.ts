@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListaAgendamentosPage } from '../pages/lista-agendamentos/lista-agendamentos';
+import { LoginPage } from '../pages/login/login';
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  selector: 'myapp'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
 
+  @ViewChild(Nav) public nav: Nav
   public paginas = [
     {
       titulo: 'Agendamentos',
-      pagina: ListaAgendamentosPage.name,
+      component: ListaAgendamentosPage.name,
       icone: 'calendar'
     }
 ];
@@ -26,6 +29,11 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+
+  irParaPagina(component)
+  {
+    this.nav.push(component);
   }
 }
 

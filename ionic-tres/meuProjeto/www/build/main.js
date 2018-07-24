@@ -23,15 +23,19 @@ webpackEmptyAsyncContext.id = 114;
 var map = {
 	"../pages/cadastro/cadastro.module": [
 		297,
-		2
+		8
 	],
 	"../pages/escolha/escolha.module": [
 		298,
-		1
+		7
 	],
 	"../pages/lista-agendamentos/lista-agendamentos.module": [
 		299,
-		0
+		6
+	],
+	"../pages/login/login.module": [
+		300,
+		5
 	]
 };
 function webpackAsyncContext(req) {
@@ -189,8 +193,8 @@ var CadastroPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-cadastro',template:/*ion-inline-start:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/pages/cadastro/cadastro.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Cadastro</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h2>{{ carro.nome }}</h2>\n  <p>R$ {{ precoTotal }}</p>\n\n  <form (ngSubmit)="agenda()" #formulario="ngForm">\n    <ion-item>\n      <ion-label stacked>Nome:</ion-label>\n      <ion-input [(ngModel)]="nome" name="nome"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>Endereço:</ion-label>\n      <ion-input [(ngModel)]="endereco" name="endereco"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>Email:</ion-label>\n      <ion-input [(ngModel)]="email" name="email"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>Data:</ion-label>\n      <ion-datetime [(ngModel)]="data" displayFormat="DD/MM/YY" name="data"></ion-datetime>\n    </ion-item>\n  </form>\n\n  <ion-fab top right edge>\n    <button ion-fab mini (click)="formulario.ngSubmit.emit()">\n      <ion-icon name="send"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-content>\n'/*ion-inline-end:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/pages/cadastro/cadastro.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__providers_agendamentos_service_agendamentos_service__["a" /* AgendamentosServiceProvider */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
             __WEBPACK_IMPORTED_MODULE_4__providers_agendamento_dao_agendamento_dao__["a" /* AgendamentoDaoProvider */]])
@@ -263,8 +267,8 @@ var EscolhaPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-escolha',template:/*ion-inline-start:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/pages/escolha/escolha.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Escolha</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-slides pager="true">\n    <ion-slide *ngFor="let foto of carro.fotos">\n      <img src="{{foto}}">\n    </ion-slide>\n  </ion-slides>\n\n  <ion-item-group>\n    <ion-item-divider color="light">\n      <ion-icon name="car"></ion-icon>\n      Veículo\n    </ion-item-divider>\n    <ion-item>{{carro.nome}}</ion-item>\n    <ion-item>R$ {{carro.preco}}</ion-item>\n  </ion-item-group>\n\n  <ion-item-group>\n    <ion-item-divider color="light">\n      <ion-icon name="options"></ion-icon>\n      Acessórios\n    </ion-item-divider>\n    <ion-item *ngFor="let acessorio of acessorios">\n      <ion-label>\n        <h2>{{ acessorio.nome }}</h2>\n        <h4>R$ {{ acessorio.preco }}</h4>\n      </ion-label>\n      <ion-toggle #acessorioToggle\n        (ionChange)="atualizaTotal(acessorioToggle.checked, acessorio)" \n        color="secondary">\n      </ion-toggle>\n    </ion-item>\n    \n  </ion-item-group>\n  <ion-item-divider color="light">\n      <span item-right>Total: R$ {{ precoTotal }}</span>\n  </ion-item-divider>\n\n  \n\n  <ion-fab top right edge>\n      <button ion-fab mini (click)="avancaCadastro()">\n        <ion-icon name="arrow-dropright"></ion-icon>\n      </button>\n  </ion-fab>\n</ion-content>'/*ion-inline-end:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/pages/escolha/escolha.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
     ], EscolhaPage);
     return EscolhaPage;
 }());
@@ -338,8 +342,8 @@ var ListaAgendamentosPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-lista-agendamentos',template:/*ion-inline-start:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/pages/lista-agendamentos/lista-agendamentos.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Agendamentos</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list>\n    <ion-item *ngFor="let agendamento of agendamentos" [class.falha]="!agendamento.enviado">\n      {{agendamento.nomeCliente}} - {{agendamento.modeloCarro}}\n\n      <button ion-button item-end icon-only clear *ngIf="!agendamento.enviado" (click)="reenvia(agendamento)">\n        <ion-icon name="refresh"></ion-icon>\n      </button>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/pages/lista-agendamentos/lista-agendamentos.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__providers_agendamento_dao_agendamento_dao__["a" /* AgendamentoDaoProvider */],
             __WEBPACK_IMPORTED_MODULE_3__providers_agendamentos_service_agendamentos_service__["a" /* AgendamentosServiceProvider */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
@@ -394,12 +398,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_rxjs_add_observable_of__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_storage__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_agendamento_dao_agendamento_dao__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_login_login__ = __webpack_require__(301);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -425,7 +431,8 @@ var AppModule = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */]
+                __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_18__pages_login_login__["a" /* LoginPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -434,7 +441,8 @@ var AppModule = /** @class */ (function () {
                     links: [
                         { loadChildren: '../pages/cadastro/cadastro.module#CadastroPageModule', name: 'CadastroPage', segment: 'cadastro', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/escolha/escolha.module#EscolhaPageModule', name: 'EscolhaPage', segment: 'escolha', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/lista-agendamentos/lista-agendamentos.module#ListaAgendamentosPageModule', name: 'ListaAgendamentosPage', segment: 'lista-agendamentos', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/lista-agendamentos/lista-agendamentos.module#ListaAgendamentosPageModule', name: 'ListaAgendamentosPage', segment: 'lista-agendamentos', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_16__ionic_storage__["a" /* IonicStorageModule */].forRoot({
@@ -447,6 +455,7 @@ var AppModule = /** @class */ (function () {
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_18__pages_login_login__["a" /* LoginPage */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
@@ -474,8 +483,8 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_lista_agendamentos_lista_agendamentos__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_lista_agendamentos_lista_agendamentos__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(301);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -493,11 +502,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var MyApp = /** @class */ (function () {
     function MyApp(platform, statusBar, splashScreen) {
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_login_login__["a" /* LoginPage */];
         this.paginas = [
             {
                 titulo: 'Agendamentos',
-                pagina: __WEBPACK_IMPORTED_MODULE_5__pages_lista_agendamentos_lista_agendamentos__["a" /* ListaAgendamentosPage */].name,
+                component: __WEBPACK_IMPORTED_MODULE_4__pages_lista_agendamentos_lista_agendamentos__["a" /* ListaAgendamentosPage */].name,
                 icone: 'calendar'
             }
         ];
@@ -508,15 +517,69 @@ var MyApp = /** @class */ (function () {
             splashScreen.hide();
         });
     }
+    MyApp.prototype.irParaPagina = function (component) {
+        this.nav.push(component);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]) === "function" && _a || Object)
+    ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/app/app.html"*/'<ion-menu [content]="conteudo">\n    <ion-list>\n        <button ion-item menuClose *ngFor="let pagina of paginas">\n            <ion-icon [name]="pagina.icone" item-left></ion-icon>\n            {{pagina.titulo}}\n        </button>\n    </ion-list>\n</ion-menu>\n<ion-nav [root]="rootPage" #conteudo></ion-nav>\n'/*ion-inline-end:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/app/app.html"*/'<ion-split-pane>\n    <ion-menu [content]="conteudo">\n\n        <ion-content>\n\n                <ion-item id="cabecalho-menu" class="cabecalho-menu">\n                    <div>\n                        <ion-avatar item-start>\n                            <img src="assets/img/avatar-profile.jpg">\n                        </ion-avatar>\n                    </div>\n                    <h2>Geovan Goes</h2>\n                    <p>geovansilvagoes@gmail.com</p>\n                </ion-item>\n        \n            <ion-list>\n                <button ion-item menuClose *ngFor="let pagina of paginas" (click)="irParaPagina(pagina.component)">\n                    <ion-icon [name]="pagina.icone" item-left></ion-icon>\n                    {{pagina.titulo}}\n                </button>\n            </ion-list>\n        </ion-content>\n        </ion-menu>\n    <ion-nav swipeBackEnable="false" [root]="rootPage" #conteudo main></ion-nav>\n</ion-split-pane>'/*ion-inline-end:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/app/app.html"*/,
+            selector: 'myapp'
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 301:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the LoginPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var LoginPage = /** @class */ (function () {
+    function LoginPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    LoginPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad LoginPage');
+    };
+    LoginPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-login',template:/*ion-inline-start:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/pages/login/login.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>login</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form action=""></form>\n\n</ion-content>\n'/*ion-inline-end:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/pages/login/login.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+    ], LoginPage);
+    return LoginPage;
+}());
+
+//# sourceMappingURL=login.js.map
 
 /***/ }),
 
@@ -631,7 +694,7 @@ var HomePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      A\'s CAr\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <ion-item *ngFor="let carro of carros " (click)="selecionaCarro(carro)">\n      <h2>{{carro.nome}}</h2>\n      <p>R$ {{carro.preco}}</p>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/geovangoes/Documents/projetos_js/Javascript-Avancado/ionic-tres/meuProjeto/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_carros_service_carros_service__["a" /* CarrosServiceProvider */]])

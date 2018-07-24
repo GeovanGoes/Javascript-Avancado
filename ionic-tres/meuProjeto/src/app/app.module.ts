@@ -19,11 +19,13 @@ import 'rxjs/add/observable/of';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento
   entryComponents: [
     MyApp,
     HomePage,
+    LoginPage
   ],
   providers: [
     StatusBar,
