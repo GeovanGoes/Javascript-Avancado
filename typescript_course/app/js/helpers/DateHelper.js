@@ -20,6 +20,11 @@ System.register([], function (exports_1, context_1) {
                 static ehDiaUtil(date) {
                     return date.getDay() != DiaDaSemana.Domingo && date.getDay() != DiaDaSemana.Sabado;
                 }
+                static ehIgual(dateOne, dateTwo) {
+                    return dateOne.getDate() == dateTwo.getDate()
+                        && dateOne.getMonth() == dateTwo.getMonth()
+                        && dateOne.getFullYear() == dateTwo.getFullYear();
+                }
             };
             exports_1("DateHelper", DateHelper);
             (function (DiaDaSemana) {

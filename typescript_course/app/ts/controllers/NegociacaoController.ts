@@ -1,8 +1,24 @@
-import { Negociacoes, Negociacao } from "../models/index";
+import { Negociacoes, Negociacao, NegociacaoPacial } from "../models/index";
 import { NegociacoesView, MensagemView } from "../views/index";
-import { logarTempoDeExecucao, domInject } from "../helpers/decorators/index";
-import { DateHelper } from "../helpers/index";
+import { logarTempoDeExecucao, domInject, throttle } from "../helpers/decorators/index";
+import { DateHelper, imprime } from "../helpers/index";
+import { NegociacaoService } from "../service/index";
 
+//type alias
+type MeuToken = string | number;
+
+
+function processaToken(token: MeuToken)
+{
+    if (typeof(token) === 'string')
+    {
+        // recebido eh uma string
+    }
+    else
+    {
+        // eh um numero
+    }
+}
 
 export class NegociacaoController 
 {
@@ -18,12 +34,14 @@ export class NegociacaoController
     private _negociacoes = new Negociacoes();
     private _negociacoesView = new NegociacoesView("#negociacoesView");
     private _mensagemView = new MensagemView("#mensagemView");
+    private _negociacaoService = new NegociacaoService();
 
     constructor()
     {
         this._negociacoesView.update(this._negociacoes);
     }
 
+    @throttle(500)
     @logarTempoDeExecucao()
     adiciona(event: Event) 
     {
@@ -40,37 +58,36 @@ export class NegociacaoController
                     parseInt(this._inputQuantidade.val()), 
                     parseFloat(this._inputValor.val())
             );
-    
+            
+            imprime(negociacao);
             this._negociacoes.adiciona(negociacao);
             this._negociacoesView.update(this._negociacoes);
             this._mensagemView.update("Negociação adidiconada com sucesso!");
         }
-        event.preventDefault();
+        
     }
 
-    importadados()
+    @throttle(500)
+    async importadados()
     {
-
-        function isOk(res: Response)
+        try 
         {
-            if (res.ok)
-                return res;
-            else
-                throw new Error(res.statusText)
-        }
-
-        fetch('http://localhost:8080/dados')
-        .then(res => isOk(res))
-        .then(response => response.json())
-        .then((dados: any[] ) => 
-        {
-            dados
-            .map(dado => new Negociacao(new Date(), dado.vezes, dado.vezes))
+            const negociacoesParaImportar = await this._negociacaoService.obterNegociacoes((res: Response) => {
+                if (res.ok)
+                    return res;
+                else
+                    throw new Error(res.statusText)
+            });            
+            const negociacoesJaImportadas = this._negociacoes.paraArray();
+    
+            negociacoesParaImportar.filter(negociacao => !negociacoesJaImportadas.some(jaImportada => negociacao.ehIgual(jaImportada)))
             .forEach(negociacao => this._negociacoes.adiciona(negociacao));
             this._negociacoesView.update(this._negociacoes);
-        })
-        .catch(err => console.error(err.message));
-
-        
+            imprime(this._negociacoes);
+        } 
+        catch (error) 
+        {
+            this._mensagemView.update(error.message)
+        }
     }
 }
