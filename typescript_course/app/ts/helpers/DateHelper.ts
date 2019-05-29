@@ -23,6 +23,13 @@ export class DateHelper
         return date.getDay() != DiaDaSemana.Domingo && date.getDay() != DiaDaSemana.Sabado;
     }
 
+    static ehIgual(dateOne: Date, dateTwo: Date): boolean
+    {
+        return dateOne.getDate() == dateTwo.getDate()
+            && dateOne.getMonth() == dateTwo.getMonth()
+            && dateOne.getFullYear() == dateTwo.getFullYear();
+    }
+
 }
 
 export enum DiaDaSemana
