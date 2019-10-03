@@ -1,0 +1,71 @@
+<h4 class="text-center"> Hey, bora fazer uma conta?!</h4>
+
+<form [formGroup]="signupForm" class="form mt-4">
+    <div class="form-group">
+        <input formControlName="email"  placeholder="email" class="form-control" autofocus >
+        <app-vmessage
+            *ngIf="signupForm.get('email').errors?.required"
+             text="email é Obrigatório!">
+        </app-vmessage>
+        <app-vmessage
+            *ngIf="signupForm.get('email').errors?.email"
+             text="email tem que ser válido!">
+        </app-vmessage>
+    </div>
+
+    <div class="form-group">
+        <input formControlName="fullName" placeholder="full name" class="form-control">
+        <app-vmessage
+            *ngIf="signupForm.get('fullName').errors?.required"
+             text="fullName é Obrigatório!">
+        </app-vmessage>
+        <app-vmessage
+            *ngIf="signupForm.get('fullName').errors?.minlength"
+             text="Tem que ter no mínimo 2 letras!">
+        </app-vmessage>
+        <app-vmessage
+            *ngIf="signupForm.get('fullName').errors?.maxlength"
+             text="tem que ter no máximo 40 letras">
+        </app-vmessage>
+    </div>
+
+    <div class="form-group">
+        <input formControlName="userName" placeholder="user name" class="form-control">
+        <app-vmessage
+            *ngIf="signupForm.get('userName').errors?.required"
+             text="userName é Obrigatório!">
+        </app-vmessage>
+        <app-vmessage
+            *ngIf="signupForm.get('userName').errors?.minlength"
+             text="Tem que ter no mínimo 2 letras!">
+        </app-vmessage>
+        <app-vmessage
+            *ngIf="signupForm.get('userName').errors?.maxlength"
+             text="tem que ter no máximo 30 letras">
+        </app-vmessage>
+        <app-vmessage
+            *ngIf="signupForm.get('userName').errors?.lowercase"
+             text="nao pode ser tudo minuscula">
+        </app-vmessage>
+    </div>
+
+    <div class="form-group">
+        <input formControlName="password" type="password" placeholder="password" class="form-control">
+        <app-vmessage
+            *ngIf="signupForm.get('password').errors?.required"
+             text="password é Obrigatório!">
+        </app-vmessage>
+        <app-vmessage
+            *ngIf="signupForm.get('password').errors?.minlength"
+             text="Tem que ter no mínimo 8 letras!">
+        </app-vmessage>
+        <app-vmessage
+            *ngIf="signupForm.get('password').errors?.maxlength"
+             text="tem que ter no máximo 14 letras">
+        </app-vmessage>
+    </div>
+
+    <button [disabled]="signupForm.invalid" class="btn btn-primary btn-block">Registrar</button>
+
+    <p>Já tem conta?<a [routerLink]="['']">Faça login!</a></p>
+</form>
