@@ -12,7 +12,7 @@ import { PhotoFormModule } from './photo-form/photo-form.module';
         PhotoListModule, 
         PhotoFormModule, 
         HttpClientModule,
-        CommonModule 
+        CommonModule
     ]
 })
 export class PhotosModule {}

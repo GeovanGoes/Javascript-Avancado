@@ -1,8 +1,8 @@
 <h4 class="text-center"> Hey, bora fazer uma conta?!</h4>
 
-<form [formGroup]="signupForm" class="form mt-4">
+<form [formGroup]="signupForm" class="form mt-4" (submit)="signup()">
     <div class="form-group">
-        <input formControlName="email"  placeholder="email" class="form-control" autofocus >
+        <input #inputEmail formControlName="email"  placeholder="email" class="form-control" autofocus >
         <app-vmessage
             *ngIf="signupForm.get('email').errors?.required"
              text="email é Obrigatório!">
@@ -45,8 +45,13 @@
         </app-vmessage>
         <app-vmessage
             *ngIf="signupForm.get('userName').errors?.lowercase"
-             text="nao pode ser tudo minuscula">
+             text="deve comecar com minusculas">
         </app-vmessage>
+        <app-vmessage
+            text="Nome de usuário em uso"
+            *ngIf="signupForm.get('userName').errors?.userNameTaken">
+        </app-vmessage>
+        <small *ngIf="signupForm.get('userName').valid" class="text-success">Username disponível</small>
     </div>
 
     <div class="form-group">
@@ -65,7 +70,7 @@
         </app-vmessage>
     </div>
 
-    <button [disabled]="signupForm.invalid" class="btn btn-primary btn-block">Registrar</button>
+    <button [disabled]="signupForm.invalid || signupForm.pending" class="btn btn-primary btn-block">Registrar</button>
 
     <p>Já tem conta?<a [routerLink]="['']">Faça login!</a></p>
 </form>
