@@ -5,7 +5,7 @@
 
 
         <div class="form-group" *ngIf="!preview; else previewImage">
-          <button type="button" (click)="fileInput.click()" class="btn btn-primary">
+          <button type="button" (click)="fileInput.click()" class="btn btn-primary" imediateClick>
               <i class="fa fa-image fa-4x align-middle"></i>
           </button>
           <input #fileInput hidden type="file" accept="image/*" formControlName="file" (change)="handleFile($event.target.files[0])">
